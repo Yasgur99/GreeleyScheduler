@@ -6,7 +6,6 @@ package application;
 
 import javax.swing.SwingUtilities;
 import application.gui.UserInterface;
-import application.logic.TeacherScheduleBuilder;
 import javax.swing.UIManager;
 public class Main {
 
