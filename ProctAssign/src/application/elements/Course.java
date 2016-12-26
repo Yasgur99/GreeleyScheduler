@@ -2,6 +2,7 @@ package application.elements;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Course{
     
@@ -20,13 +21,12 @@ public class Course{
     /*List of sections*/
     public List<Section> sections;
 
-    public Course(Subject subject, String courseName, int courseID,
-		 int maxStudentAmount, int minStudentAmount){
+    public Course(Subject subject, String courseName, int courseID){
 	this.subject = subject;
 	this.courseName = courseName;
 	this.courseID = courseID;
-        this.maxStudentAmount = maxStudentAmount;
-	this.minStudentAmount = minStudentAmount;
+        this.maxStudentAmount = 25;
+	this.minStudentAmount = 4;
 	this.sections = new ArrayList<Section>();
     }
 
@@ -35,22 +35,66 @@ public class Course{
 	this.numOfSections = numOfSections;
     }
     
-    /*Returns max amount of students allowed in this course*/
-    public int getMaxStudentAmount(){
-        return this.getMaxStudentAmount();
-    }
-    
-
     /*Adds a section of this course to the list*/
     public void addSection(Section section){
         if(section.getCourse() == this)
             sections.add(section);
     }
-    
-    @Override
-    public String toString(){
-	return "Subject: " + subject + ", Course Name: " + courseName + ", Course ID: " + courseID
-	 	+ ", Number of Sections: " + numOfSections + ", Max Number of Students: " + maxStudentAmount
-		+ ", Min Number of Students: " + minStudentAmount;
+
+    public Subject getSubject() {
+        return subject;
     }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public int getCourseID() {
+        return courseID;
+    }
+
+    public int getNumOfSections() {
+        return numOfSections;
+    }
+
+    public int getMaxStudentAmount() {
+        return maxStudentAmount;
+    }
+
+    public int getMinStudentAmount() {
+        return minStudentAmount;
+    }
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + Objects.hashCode(this.courseName);
+        hash = 11 * hash + this.courseID;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(obj == null)
+            return false;
+        if(getClass() != obj.getClass())
+            return false;
+        final Course other = (Course) obj;
+        if(this.courseID != other.courseID)
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" + "subject=" + subject + ", courseName=" + courseName + ", courseID=" + courseID + ", numOfSections=" + numOfSections + ", maxStudentAmount=" + maxStudentAmount + ", minStudentAmount=" + minStudentAmount + ", sections=" + sections + '}';
+    }
+    
+    
 }
