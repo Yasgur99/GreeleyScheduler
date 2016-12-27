@@ -17,6 +17,5 @@ public class Main {
         //Create new UI and invoke it when possible
         UserInterface ui = new UserInterface();
         SwingUtilities.invokeLater(ui);
-        //TeacherScheduleBuilder sb = new TeacherScheduleBuilder();
     }
 }

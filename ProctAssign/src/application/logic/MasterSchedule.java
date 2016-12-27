@@ -64,6 +64,4 @@ public class MasterSchedule {
     public List<Student> getStudents() {
         return students;
     }
-    
-    
 }

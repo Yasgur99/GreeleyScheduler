@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Course{
-    
+public class Course {
+
     /*Subject to be used to make sure teachers are compatible and organize courses*/
     private Subject subject;
     /*The formal title as found in the admissions book*/
@@ -21,22 +21,22 @@ public class Course{
     /*List of sections*/
     public List<Section> sections;
 
-    public Course(Subject subject, String courseName, int courseID){
-	this.subject = subject;
-	this.courseName = courseName;
-	this.courseID = courseID;
+    public Course(Subject subject, String courseName, int courseID) {
+        this.subject = subject;
+        this.courseName = courseName;
+        this.courseID = courseID;
         this.maxStudentAmount = 25;
-	this.minStudentAmount = 4;
-	this.sections = new ArrayList<Section>();
+        this.minStudentAmount = 4;
+        this.sections = new ArrayList<Section>();
     }
 
     /*Sets number of sections which is determined within application.logic*/
-    public void setNumOfSections(int numOfSections){
-	this.numOfSections = numOfSections;
+    public void setNumOfSections(int numOfSections) {
+        this.numOfSections = numOfSections;
     }
-    
+
     /*Adds a section of this course to the list*/
-    public void addSection(Section section){
+    public void addSection(Section section) {
         if(section.getCourse() == this)
             sections.add(section);
     }
@@ -95,6 +95,4 @@ public class Course{
     public String toString() {
         return "Course{" + "subject=" + subject + ", courseName=" + courseName + ", courseID=" + courseID + ", numOfSections=" + numOfSections + ", maxStudentAmount=" + maxStudentAmount + ", minStudentAmount=" + minStudentAmount + ", sections=" + sections + '}';
     }
-    
-    
 }

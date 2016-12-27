@@ -80,8 +80,6 @@ public class Student{
         return true;
     }
 
-   
-
     @Override
     public String toString() {
         return "Student{" + "name=" + name + ", ID=" + ID + ", requestedCourses=" + requestedCourses + ", coursesNotEnroledIn=" + coursesNotEnroledIn + ", courses=" + courses + '}';

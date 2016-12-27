@@ -59,7 +59,6 @@ public class Teacher {
     public Subject getSubject() {
         return subject;
     }
-  
 
     @Override
     public int hashCode() {
@@ -83,11 +82,8 @@ public class Teacher {
         return true;
     }
 
-  
-
     @Override
     public String toString() {
         return "Teacher{" + "name=" + name + ", ID=" + ID + ", numOfCourses=" + numOfCourses + ", isChair=" + isChair + ", sections=" + sections + ", lunch=" + lunch + ", subject=" + subject + '}';
     }
-  
 }

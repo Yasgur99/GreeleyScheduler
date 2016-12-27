@@ -48,6 +48,7 @@ public class CourseManager extends JPanel {
         add(createGoButton(), BorderLayout.SOUTH);
 
         /*Create a scroll field that shows students - needs to be implemented*/
+        add(new CourseList(schedule));
     }
 
     private JPanel createOperationButtons() {
@@ -154,5 +155,7 @@ public class CourseManager extends JPanel {
 
         return buttons;
     }
-
+    
+ 
+    
 }

@@ -44,7 +44,6 @@ public class MyTabbedPane extends JPanel {
         
         /*add to this JPanel*/
         add(tabbedPane);
-        
     }
 
     /*Method that returns a title for the tab*/
