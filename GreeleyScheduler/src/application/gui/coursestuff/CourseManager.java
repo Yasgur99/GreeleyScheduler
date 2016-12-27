@@ -21,6 +21,8 @@ public class CourseManager extends JPanel {
     private JTextField courseName;
     /*Course ID to be paresed by listener*/
     private JTextField courseID;
+    /*JPanel containing a group of radio buttons of avaliable opeartions*/
+    private OperationButtons operationButtons;
     /*JPanel containing a group of radio buttons of avaliable departments*/
     private DepartmentButtons departmentButtons;
     /*JPanel containing a group of radio buttons of avaliable semesters*/
@@ -35,7 +37,8 @@ public class CourseManager extends JPanel {
 
     private void createComponents() {
         /*Create add/remove radio buttons*/
-        add(new OperationButtons("course"), BorderLayout.NORTH);
+        this.operationButtons = new OperationButtons("course");
+        add(operationButtons, BorderLayout.NORTH);
 
         /*Create required fields to add element*/
         add(createTextFields(), BorderLayout.WEST);
@@ -50,9 +53,11 @@ public class CourseManager extends JPanel {
         /*Create fields to be used to do operation by listener*/
         JPanel input = new JPanel(new GridLayout(8,1));
         input.add(new JLabel("Subject: "));
-        input.add(new DepartmentButtons());
+        this.departmentButtons = new DepartmentButtons();
+        input.add(this.departmentButtons);
         input.add(new JLabel("Semester: "));
-        input.add(new SemesterButtons());
+        this.semesterButtons = new SemesterButtons();
+        input.add(this.semesterButtons);
         input.add(new JLabel("Course Name:"));
         input.add(this.courseName);
         input.add(new JLabel("Course ID: "));
@@ -63,7 +68,9 @@ public class CourseManager extends JPanel {
     /*create go button that submits fields to listener and does operation*/
     private JButton createGoButton() {
         JButton go = new JButton("Go");
-        //go.addActionListener(new CourseListener(courseName, courseID, schedule, radios, subjectButtons));
+        go.addActionListener(new CourseListener(operationButtons.getOperationButtons(),operationButtons.getOperationButtonGroup(),
+                            departmentButtons.getSubjectButtons(), departmentButtons.getSubjectButtonsGroup(),
+                            semesterButtons.getSemesterButtons(), semesterButtons.getSemesterButtonGroup(),courseName,courseID));
         return go;
     }
 }

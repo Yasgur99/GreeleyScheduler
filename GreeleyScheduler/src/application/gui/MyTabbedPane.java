@@ -33,12 +33,12 @@ public class MyTabbedPane extends JPanel {
         tabbedPane.addTab("Teachers", teachers);
 
         /*Add students tab and its panel manager*/
-        JComponent students = makeTextPanel("Students");
+        JComponent students = makeTextPanel("To be implemented");
         //JComponent students = new CourseManager(schedule);
         tabbedPane.addTab("Students", students);
 
         /*to be implemented further*/
-        JComponent schedule = makeTextPanel("Schedule");
+        JComponent schedule = makeTextPanel("To be implemented");
         tabbedPane.addTab("Schedule", schedule);
 
         /*add to this JPanel*/

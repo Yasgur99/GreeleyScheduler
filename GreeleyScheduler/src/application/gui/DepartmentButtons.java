@@ -87,4 +87,14 @@ public class DepartmentButtons extends JPanel {
         add(pe);
         add(language);
     }
+
+    public JRadioButton[] getSubjectButtons() {
+        return subjectButtons;
+    }
+
+    public ButtonGroup getSubjectButtonsGroup() {
+        return subjectButtonsGroup;
+    }
+    
+    
 }

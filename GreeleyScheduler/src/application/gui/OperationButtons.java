@@ -40,4 +40,14 @@ public class OperationButtons extends JPanel {
         add(add);
         add(remove);
     }
+
+    public JRadioButton[] getOperationButtons() {
+        return operationButtons;
+    }
+
+    public ButtonGroup getOperationButtonGroup() {
+        return operationButtonGroup;
+    }
+    
+    
 }

@@ -52,4 +52,14 @@ public class SemesterButtons extends JPanel {
         add(secondSemester);
         add(bothSemesters);
     }
+
+    public JRadioButton[] getSemesterButtons() {
+        return semesterButtons;
+    }
+
+    public ButtonGroup getSemesterButtonGroup() {
+        return semesterButtonGroup;
+    }
+    
+    
 }

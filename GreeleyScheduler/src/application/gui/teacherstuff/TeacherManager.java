@@ -18,6 +18,8 @@ public class TeacherManager extends JPanel {
 
     /*Teacher name to be parsed by listener*/
     private JTextField teacherName;
+    /*JPanel containing a group of radio buttons of avaliable opeartions*/
+    private OperationButtons operationButtons;
     /*JPanel containing a group of radio buttons of avaliable departments*/
     private DepartmentButtons departmentButtons;
 
@@ -29,7 +31,8 @@ public class TeacherManager extends JPanel {
 
     private void createComponents() {
         /*Create add/remove radio buttons*/
-        add(new OperationButtons("teacher"), BorderLayout.NORTH);
+        this.operationButtons = new OperationButtons("teacher");
+        add(operationButtons, BorderLayout.NORTH);
 
         /*Create required fields to add element*/
         add(createTextFields(), BorderLayout.WEST);
@@ -44,7 +47,8 @@ public class TeacherManager extends JPanel {
         /*Create fields to be used to do operation by listener*/
         JPanel input = new JPanel(new GridLayout(4, 1));
         input.add(new JLabel("Subject: "));
-        input.add(new DepartmentButtons());        
+        this.departmentButtons = new DepartmentButtons();
+        input.add(this.departmentButtons);
         input.add(new JLabel("Teacher Name:"));
         input.add(this.teacherName);
         return input;
@@ -53,7 +57,8 @@ public class TeacherManager extends JPanel {
     /*create go button that submits fields to listener and does operation*/
     private JButton createGoButton() {
         JButton go = new JButton("Go");
-        //go.addActionListener(new CourseListener(courseName, courseID, schedule, radios, subjectButtons));
+        go.addActionListener(new TeacherListener(operationButtons.getOperationButtons(), operationButtons.getOperationButtonGroup(),
+                departmentButtons.getSubjectButtons(), departmentButtons.getSubjectButtonsGroup(),teacherName));
         return go;
     }
 
