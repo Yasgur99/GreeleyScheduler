@@ -68,9 +68,9 @@ public class CourseManager extends JPanel {
     /*create go button that submits fields to listener and does operation*/
     private JButton createGoButton() {
         JButton go = new JButton("Go");
-        go.addActionListener(new CourseListener(operationButtons.getOperationButtons(),operationButtons.getOperationButtonGroup(),
-                            departmentButtons.getSubjectButtons(), departmentButtons.getSubjectButtonsGroup(),
-                            semesterButtons.getSemesterButtons(), semesterButtons.getSemesterButtonGroup(),courseName,courseID));
+        //go.addActionListener(new CourseListener(operationButtons.getOperationButtons(),operationButtons.getOperationButtonGroup(),
+          //                  departmentButtons.getSubjectButtons(), departmentButtons.getSubjectButtonsGroup(),
+            //                semesterButtons.getSemesterButtons(), semesterButtons.getSemesterButtonGroup(),courseName,courseID));
         return go;
     }
 }
