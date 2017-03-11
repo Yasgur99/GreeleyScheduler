@@ -14,5 +14,6 @@ I have created this project in attempt to save the HGHS staff from creating
 the master schedule using trial and error using a room full of velcro and 
 slips of paper containing teacher names and course names.
 
+#Contact me
 I can be contacted at michaelmaitland@verizon.net for any further information
 or questions?
