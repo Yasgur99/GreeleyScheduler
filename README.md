@@ -1,15 +1,18 @@
-# ProctAssign
-A program to assign proctors to rooms based on their schedule
+# GreeleyScheduler
+A program created for Horace Greeley High school to handle the formation
+of the Master Schedule. This program handles the parsing of Excel files
+containing the courses offered, teachers that teach those courses, and 
+constraints of the teachers. I am working with HGHS staff to learn more
+about the requirements and constraints of the schedule. This program 
+uses a genetic algorithm in order to determine the schedule. After a
+valid schedule is found, it will be outputed in a text file formated
+by the standards of Infinite Campus. Eventualy, I hope that this program 
+will be able to automate the input of the schedule into Infinite Campus
+so the HGHS staff does not have to do it by hand.
 
-#Mr. Fein
-The most current version of the source code is under the GreeleyScheduler directory source.
-The ProctAssign Foler (and netbeans project) is not in use anymore because GreeleyScheduler is a cleaner
-and more consise grouping of code however GreeleyScheduler does lack the "MasterSchedule" which exists in ProctAssign/src
+I have created this project in attempt to save the HGHS staff from creating
+the master schedule using trial and error using a room full of velcro and 
+slips of paper containing teacher names and course names.
 
-I have not had time to put it into "GreeleyScheduler" but I will soon as well as a way to read/write the data from/to a file so
-the school wouldn't have to input everything in by hand.
-
-What I need your help most is deciding how to decide when sections should meet and which teachers are teaching them based on the 
-constraints I had mentioned in the email.
-
-Thanks!
+I can be contacted at michaelmaitland@verizon.net for any further information
+or questions?
