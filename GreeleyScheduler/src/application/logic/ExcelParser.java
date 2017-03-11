@@ -1,10 +1,22 @@
 package application.logic;
 
 /**
+ * This class is responsible for reading in a list of Excel sheets and reading the data in the. These excel sheets
+ * should have two pages. The first page should be titled "Master Schedule Projections" and the second should
+ * be titled "Teacher AssignmentConstraints. The first page should have the department title in the first row
+ * of the document and the rest of the document should have the information for the courses of the current
+ * and the next year, although only the next year will be parsed. The second page will contain the teachers 
+ * and the courses they are teaching as well as any constraints the teacher has.
+ * <p>
+ * This class will parse the data on each of these pages and create a Map of courses, a List of teachers, and
+ * a list of sections.
+ * 
  * @author michaelmaitland
  */
+
 import application.elements.Course;
 import application.elements.Department;
+import application.elements.Section;
 import application.elements.Semester;
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,6 +46,13 @@ public class ExcelParser {
     /*List of all courses at Greeley*/
     private Map<Integer, Course> courseMap;
 
+    /**
+     * This constructor takes in an array of filenames that belong to a list of Excel sheets 
+     * containing the information for each department at the school. This constructor will then
+     * load and parse each file one by one.
+     * 
+     * @param filenames array of filenames that belong to Excel sheets containing the information for each department.
+     **/
     public ExcelParser(String[] filenames) {
         this.filenames = filenames;
         this.courseMap = new HashMap<>();
@@ -42,6 +61,13 @@ public class ExcelParser {
             loadDoc(fileNum);
     }
 
+    /**
+     * Takes in the index of the file to be read and validates that the document is formatted
+     * correctly. This method then takes each page of the Excel sheets and gives it to the 
+     * correct method to be parsed.
+     * 
+     * @param fileNum the index of the file to be parsed
+     **/
     private void loadDoc(int fileNum) {
         FileInputStream fis = null;
         XSSFWorkbook workbook = null;
@@ -90,6 +116,14 @@ public class ExcelParser {
     private String courseName;
     private boolean cellParsed = false;
 
+    /**
+     * This method takes in an Excel sheet that should contain the Courses offered in the department
+     * of the respective file. It reads in the courses that are offered and creates a Map which has 
+     * Course number as a key and the Course as the value.
+     * 
+     * @param sheet the Excel sheet to be read
+     * @see Course
+     **/
     private void parseCourses(XSSFSheet sheet) {
         /*Determine subject on document*/
         Department department = determineSubject(sheet);
@@ -120,6 +154,15 @@ public class ExcelParser {
         }
     }
 
+    /**
+     * This method reads the first row of the Excel sheet that contains the Courses offered
+     * and returns which Department those Courses belong to.
+     * 
+     * @param sheet the Excel sheet to be read
+     * @return the Department the sheet belongs to
+     * @see Course
+     * @see Department
+     **/
     private Department determineSubject(XSSFSheet sheet) {
         /*Determine subject of sheet*/
         int firstRowNum = sheet.getFirstRowNum();
@@ -146,6 +189,14 @@ public class ExcelParser {
         return Department.N_A;
     }
 
+    /**
+     * This method is a helper method to determineSubject(XSSFSheet sheet) and it handles determining which
+     * Department owns the sheet by analyzing the value off the cell that should contain the Department.
+     * 
+     * @param cellValue the String representation of the cell that should contain the subject of the sheet
+     * @return the Department the sheet belongs to.
+     * @see Department
+     **/
     private Department determineSubject(String cellValue) {
         if (cellValue.contains("Art & Life Department")) return Department.ART_AND_LIFESKILLS;
         else if (cellValue.contains("English Department")) return Department.ENGLISH;
@@ -160,6 +211,12 @@ public class ExcelParser {
         else return Department.N_A;
     }
 
+    /**
+     * This parseCell method handles the reading of courses and create course objects from the rows
+     * that belong to each course. After creating a course object, the new course is added to the courseMap.
+     * 
+     * @param cell a cell from the sheet that contains Courses
+     **/
     private void parseCell(Cell cell) {
         int columnIndex = cell.getColumnIndex();
 
@@ -188,30 +245,19 @@ public class ExcelParser {
             }
         }
     }
-
-    /* private void parseTeacherConstraints(XSSFSheet sheet) {
-        // Get iterator to all the rows in current sheet  and traverse
-        Iterator<Row> rowIterator = sheet.iterator();
-        while (rowIterator.hasNext()) {
-            Row row = rowIterator.next();
-
-            //Traverse each column in current row
-            Iterator<Cell> cellIterator = row.cellIterator();
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
-                if(cell.getCellTypeEnum() == CellType.STRING){
-                    System.out.println(cell.getStringCellValue());
-                }
-            }
-        }
-    }*/
     
     /*Global variables to be used to create teachers*/
     private String teacherName;
-    private List<String> sections;
+    private List<Section> sections;
     private List<String> constraints;
     private boolean isChair;
 
+    /**
+     * This method takes in the sheet that contains the teachers and the sections they teach as well as
+     * their constraints and adds them and their information to a list of courses as well as a list of sections.
+     * 
+     * @param sheet sheet that contains teachers, the sections they teach, and their constraints
+     **/
     private void parseTeacherConstraints(XSSFSheet sheet) {
         for (int i = 0; i < 40; i++) { //loop columns
             for (int j = 0; j < sheet.getLastRowNum() + 1; j++) {
@@ -230,18 +276,24 @@ public class ExcelParser {
                     if (cellVal.matches("[A-Z]([a-z]*), (.)*")) {
                         teacherName = cellVal;
                         isChair = false;
-                        sections = new ArrayList<String>();
+                        sections = new ArrayList<Section>();
                         constraints = new ArrayList<String>();
                     } else if (cellVal.startsWith("C: ")) {
                         if (cellVal.equals("Chair"))
                             isChair = true;
-                        else
-                            sections.add(cellVal);
+                        //else
+                            //sections.add(cellVal);
                     } //else
                       //  constraints.add(cellVal);
                 }
-
             }
         }
+    }
+    
+    /**
+     * @return list of sections that are all complete (They are tied to a specific teacher)
+     **/
+    public List<Section> getSections(){
+        return this.sections;
     }
 }
