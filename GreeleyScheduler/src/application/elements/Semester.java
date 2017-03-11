@@ -1,6 +1,9 @@
 package application.elements;
 
 /**
+ * This enum represents the semester that a Course or a Section can meet. This is used in the
+ * genetic algorithm because we are really making two schedules, one for each semester.
+ * 
  * @author yasgur99
  **/
 
